@@ -1,6 +1,8 @@
 import  { useEffect, useState } from 'react';
 import axios from 'axios';
 import App from './App'
+import './Perfil.css'
+
 const baseURL = 'http://localhost:3000'
 
 function Perfil({ perfil }) {
@@ -23,20 +25,26 @@ function Perfil({ perfil }) {
       getPerfil();
     }
   }, [perfil]);
- 
+  const handleAllPerfis = () => {
+    navigate('/perfis')
+  
+    };
   return (
-    <div>
-      <h2>Perfil</h2>
+    <div className='body-perfil'>
+      <h2>Meu Perfil</h2>
       {perfil && (
         <>
-        
-          <p>ID: {perfil.id}</p>
+        <div className='paragrafos-perfil'>
+        <p>ID: {perfil.id}</p>
           <p>Nome: {perfil.nome}</p>
           <p>Email: {perfil.email}</p>
           <p>Empresa: {perfil.empresa}</p>
           <p>Telefone: {perfil.telefone}</p>
+        </div>
+         
         </>
       )}
+      <button>Ver todos os perfis</button>
     </div>
   );
 }

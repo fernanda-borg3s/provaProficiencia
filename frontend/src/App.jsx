@@ -3,6 +3,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 // import LoginForm from './LoginForm';
 import CadastroForm from './CadastroForm';
 import Perfil from './Perfil';
+import Perfis from './Perfis';
 import axios from 'axios';
 // import Form from 'react-bootstrap/Form';
 import './App.css'
@@ -115,6 +116,10 @@ const handleCadastro = () => {
       </Routes>
       <Routes>
       <Route path="/perfil" element={ <Perfil  perfil={perfil} />}/>
+              
+      </Routes>
+      <Routes>
+      <Route path="/perfis" element={ <Perfis  />}/>
               
       </Routes>
      
