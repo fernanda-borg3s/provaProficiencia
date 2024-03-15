@@ -1,34 +1,32 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom';
-// import LoginForm from './LoginForm';
 import CadastroForm from './CadastroForm';
 import Perfil from './Perfil';
 import Perfis from './Perfis';
 import axios from 'axios';
-// import Form from 'react-bootstrap/Form';
 import './App.css'
 import { Col, Container, Row } from 'react-bootstrap';
+
 const baseURL = 'http://localhost:3000'
+
+
 function App() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const [token, setToken] = useState(null); // Estado para armazenar o token de autenticação
-  const [perfil, setPerfil] = useState(null); // Estado para armazenar os detalhes do perfil do usuário logado
+  const [token, setToken] = useState(null); // armazenar o token de autenticação
+  const [perfil, setPerfil] = useState(null); //  armazenar os detalhes do perfil do usuário logado
   const navigate = useNavigate(); // Instância para redirecionamento de página
-  // const [token, setToken] = useState(null);
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
     try {
       const response = await axios.post(`${baseURL}/login`, {
       email,
       senha
     });
     const { token, perfil } = response.data; // Extrair token e perfil da resposta
-    console.log('Token de autenticação:', response.data);
-
-      setToken(token); // Armazenar o token no estado
+    // console.log('Token de autenticação:', response.data);
+      setToken(token); 
       setPerfil(perfil); // Armazenar os detalhes do perfil no estado
     // Limpar os campos do formulário após o envio bem-sucedido
     navigate('/perfil')
@@ -85,46 +83,28 @@ const handleCadastro = () => {
         <Col className='col-hide'>
           <h1>Login</h1>
           <form onSubmit={handleLogin}>
-        <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input type="password" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)} />
-        <button type="submit">Login</button>
-       <button onClick={handleCadastro}>Cadastrar Perfil</button>
-      </form>
-     
-
+            <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input type="password" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)} />
+            <div className='d-flex flex-column w-100'>
+            <button className="w-100" type="submit">Login</button>
+          <button className="w-100" onClick={handleCadastro}>Cadastrar Perfil</button>
+            </div>
+        </form>
         </Col>
-        
       </Row>
-      {perfil && (
-        
-        <div  >
-          <h2>Perfil do usuário logado</h2>
-          <p>Token Gerado: {token}</p>
-          <p>ID: {perfil.id}</p>
-          <p>Nome: {perfil.nome}</p>
-          <p>Email: {perfil.email}</p>
-          <p>Empresa: {perfil.empresa}</p>
-          <p>Telefone: {perfil.telefone}</p>
-        </div>
-      )}
+    
     </Container>
  
-    
+ {/* rotas do front, nao é ideal deixar aqui, mas vai ficar pro enquanto */}
       <Routes>
-      <Route path="/cadastro" element={<CadastroForm />}/>
-              
+        <Route path="/cadastro" element={<CadastroForm />}/>      
       </Routes>
       <Routes>
-      <Route path="/perfil" element={ <Perfil  perfil={perfil} />}/>
-              
+        <Route path="/perfil" element={ <Perfil  perfil={perfil} />}/>      
       </Routes>
       <Routes>
-      <Route path="/perfis" element={ <Perfis  />}/>
-              
+        <Route path="/perfis" element={ <Perfis  />}/>     
       </Routes>
-     
-         
-      
     
    
     </>

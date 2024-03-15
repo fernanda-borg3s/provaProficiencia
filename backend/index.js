@@ -1,6 +1,5 @@
 const express = require('express');
 // const mongoose = require('mongoose');
-
 const bodyParser = require('body-parser');
 const Profile = require('./models/Profile');
 const jwt = require('jsonwebtoken');
@@ -8,16 +7,11 @@ const cors = require('cors');
 const Perfil = require('./models/Profile'); // Importe o modelo de Perfil
 
 const connectDatabase = require('./database/database')
-
 const app = express();
 app.use(cors());
-//produção
-// app.use(cors({
-//   origin: 'http://seufrontend.com' // Substitua pela URL do seu frontend
-// }));
 const port = process.env.PORT || 3000;
 
-connectDatabase()
+connectDatabase() //chama banco
 app.use(express.json())
 
 // Endpoint para criar um novo perfil
@@ -53,11 +47,10 @@ app.post('/perfis', async (req, res) => {
     }
   });
   
-  // Endpoint para recuperar o perfil do usuário logado (após autenticação)
+  // Endpoint para recuperar o perfil do usuário logado 
   app.get('/perfil', async (req, res) => {
     try {
       const token = req.headers.authorization.split(' ')[1]; // Obtém o token do cabeçalho Authorization
-
       // Verifica e decodifica o token JWT
       const decoded = jwt.verify(token, 'secret_key');
       const email = decoded.email;
@@ -98,11 +91,7 @@ app.post('/perfis', async (req, res) => {
       if (!perfil) {
         return res.status(401).json({ message: 'Credenciais inválidas' });
       }
-  
-      // Gera um token JWT
       const token = jwt.sign({ email }, 'secret_key');
-  
-      // Retorna o token JWT e os detalhes do perfil
       res.json({ 
         token,
         perfil: {

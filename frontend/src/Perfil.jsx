@@ -2,10 +2,12 @@ import  { useEffect, useState } from 'react';
 import axios from 'axios';
 import App from './App'
 import './Perfil.css'
+import {  useNavigate } from 'react-router-dom';
 
 const baseURL = 'http://localhost:3000'
 
 function Perfil({ perfil }) {
+  const navigate = useNavigate(); 
   const [perfilCompleto, setPerfilCompleto] = useState(null);
   const getPerfil = async () => {
     try {
@@ -31,10 +33,10 @@ function Perfil({ perfil }) {
     };
   return (
     <div className='body-perfil'>
-      <h2>Meu Perfil</h2>
       {perfil && (
         <>
         <div className='paragrafos-perfil'>
+        <h2>Meu Perfil</h2>
         <p>ID: {perfil.id}</p>
           <p>Nome: {perfil.nome}</p>
           <p>Email: {perfil.email}</p>
@@ -44,7 +46,7 @@ function Perfil({ perfil }) {
          
         </>
       )}
-      <button>Ver todos os perfis</button>
+      <button onClick={handleAllPerfis}>Ver todos os perfis</button>
     </div>
   );
 }

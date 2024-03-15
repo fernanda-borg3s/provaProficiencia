@@ -3,6 +3,8 @@ import axios from 'axios';
 import './App.css'
 import { Col, Container, Row } from 'react-bootstrap';
 const baseURL = 'http://localhost:3000'
+
+
 function CadastroForm() {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
@@ -46,12 +48,9 @@ function CadastroForm() {
           <input type="password" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)} />
           <input type="tel" placeholder="Telefone" value={telefone} onChange={(e) => setTelefone(e.target.value)} />
           <button type="submit">Criar Perfil</button>
-    </form>
-
-
+        </form>
         </Col>
       </Row>
-    
     </Container>
     </>
   );

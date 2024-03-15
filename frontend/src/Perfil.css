@@ -15,9 +15,13 @@
     
     
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    width:50%;
+    width:500px;
     padding: 40px;
     
+  }
+  h2{
+    text-align: center;
+    color:#004d2a;
   }
 button{
     width: 150px;
