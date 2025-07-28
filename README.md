@@ -53,13 +53,13 @@ cd sistema-de-registro
   { useNewUrlParser: true, useUnifiedTopology: true }
 )
 ```
-### 2. Inicie o backend
+### 3. Inicie o backend
 ```bash
 cd backend
 npm install
 npm run dev
 ```
-### 2. Inicie o frontend
+### 4. Inicie o frontend
 ```bash
 cd frontend
 npm install
