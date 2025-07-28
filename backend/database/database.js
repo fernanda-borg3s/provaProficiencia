@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 const connetcDatabase = () => {
     console.log("Wait, connectig");
-// por enquanto isso esta no git ignore
     mongoose.connect("<Coloque a BASEURL gerada no mongo>",
         { useNewUrlParser: true, useUnifiedTopology: true }
     )
